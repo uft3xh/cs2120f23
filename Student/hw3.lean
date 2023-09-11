@@ -29,8 +29,11 @@ a result.
 -/
 
 -- Answer below
-
-
+def funkom {a β y : Type}
+ (g : β → y) 
+ (f: a → β ) :
+  a → y :=
+λ x, g (f x)
 /-! 
 ## Problem #2
 
@@ -39,7 +42,8 @@ Define a function of the following polymorphic type:
 -/
 
 -- Answer below
-
+def mkop {a β : Type} (a: a) (b : β) : prod a β
+(a, b)
 
 
 /-! 
@@ -51,8 +55,8 @@ Define a function of the following polymorphic type:
 
 -- Answer below
 
-
-
+def op_left {a β : Type} (pair : a × β) : a :=
+pair.1
 
 /-! 
 ## Problem #4
@@ -62,7 +66,8 @@ Define a function of the following polymorphic type:
 -/
 
 -- Answer below
-
+def op_right {a β : Type} (pair : a × β) : β :=
+pair.2
 
 
 /-! 
@@ -98,7 +103,44 @@ from each weekday is *money* and the reward from a weekend
 day is *health*.
 -/
 
+inductive days: Type
+| Monday
+| Tuesday  
+| Wednesday  
+| Thursday
+| Friday
+| Saturday
+| Sunday
+
+inductive kind : Type
+| work
+| play
+
+
+def day2kind (d : days) : kind :=
+match d with 
+| days.Monday => kind.work
+| days.Tuesday => kind.work
+| days.Wednesday => kind.work
+| days.Thursday => kind.work
+| days.Friday => kind.work
+| days.Saturday => kind.play
+| days.Sunday => kind.play
+
+inductive reward : Type
+| money
+| health
+
+def kind2reward (k : kind) : reward :=
+match k with
+| kind.work => reward.money
+| kind.play => reward.health
+
+def day2reward : days → reward :=
+funkom kind2reward day2kind 
+
 /-!
+
 ## Problem #6
 
 ### A. 
