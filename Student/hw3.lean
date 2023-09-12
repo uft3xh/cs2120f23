@@ -157,14 +157,18 @@ Is × left associative or right associative? Briefly explain
 how you reached your answer.
 
 Answer here: 
-
+The × operator in Lean, representing the Cartesian product of types, is left associative.
+ #check Nat × Nat × Nat is checking the type of the expression Nat × Nat × Nat. The output shows that it is 
+ interpreted as (Nat × Nat) × Nat, meaning the first two Nat types are combined into a single function
+ before being combined with the third Nat.
 ### B.
 Define a function, *triple*, of the following type:
 { α β γ : Type } → α → β → γ → (α × β × γ)  
 -/
 
 -- Here:
-
+def triple {α β γ : Type} (a : α) (b : β) (c : γ) : α × β × γ :=
+  (a, b, c)
 /-!
 ### C.
 Define three functions, call them *first*, *second*, 
@@ -174,7 +178,14 @@ second, or third elements.
 -/
 
 -- Here:
+def first {α β γ : Type} : α × β × γ → α
+| (a, _, _) := a
 
+def second {α β γ : Type} : α × β × γ → β
+| (_, b, _) := b
+
+def third {α β γ : Type} : α × β × γ → γ
+| (_, _, c) := c
 /-!
 ### D.
 Write three test cases using #eval to show that when 
@@ -184,7 +195,12 @@ element of that triple.
 -/
 
 -- Here:
+def myTriple : ℕ × string × bool := (42, "Hello, World!", true)
 
+-- Test cases
+#eval first myTriple
+#eval second myTriple
+#eval third myTriple
 /-!
 ### E.
 Use #check to check the type of a term. that you make 
@@ -192,6 +208,8 @@ up, of type (Nat × String) × Bool. The challenge here
 is to write a term of that type. 
 -/
 
+def myTerm : (ℕ × string) × bool := ((42, "Hello, World!"), true)
 
+#check myTerm
 
 
