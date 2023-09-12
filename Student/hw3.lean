@@ -139,6 +139,7 @@ match k with
 def day2reward : days → reward :=
 funkom kind2reward day2kind 
 
+#eval day2reward days.Monday
 /-!
 
 ## Problem #6
