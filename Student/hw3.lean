@@ -31,9 +31,12 @@ a result.
 -- Answer below
 def funkom {a β y : Type}
  (g : β → y) 
- (f: a → β ) :
+ (f : a → β ) :
   a → y :=
 λ x, g (f x)
+
+def funkom {α β γ : Type} 
+a, β, y, g, f => fun (a: a) => ()
 /-! 
 ## Problem #2
 
@@ -139,7 +142,8 @@ match k with
 def day2reward : days → reward :=
 funkom kind2reward day2kind 
 
-#eval day2reward days.Monday
+#reduce day2reward days.Monday
+
 /-!
 
 ## Problem #6
@@ -179,13 +183,13 @@ second, or third elements.
 
 -- Here:
 def first {α β γ : Type} : α × β × γ → α
-| (a, _, _) := a
+| (a, _, _) => a
 
 def second {α β γ : Type} : α × β × γ → β
-| (_, b, _) := b
+| (_, b, _) => b
 
 def third {α β γ : Type} : α × β × γ → γ
-| (_, _, c) := c
+| (_, _, c) => c
 /-!
 ### D.
 Write three test cases using #eval to show that when 
