@@ -398,6 +398,11 @@ inductive Sum (α β : Type) : Type
 def a_sum1 : Sum Nat Bool := Sum.inl 1
 def b_sum1 : Sum Nat Bool := Sum.inr true
 
+def a_sum1' := @Sum.inl Nat String 1
+def b_sum1' : Sum Nat Bool := Sum.inr true
+/- 
+@ turns off implicit arguments
+-/
 /-
 These definitions assign (1) to *a_sum1* a 
 Sum object capable of holding a Nat OR
