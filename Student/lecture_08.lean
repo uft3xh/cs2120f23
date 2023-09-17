@@ -143,7 +143,7 @@ You can actually write this LEAN code in a file,
 e.g., HelloWorld.lean, and compile and run it just
 like a Java or C++ program. Try it in the terminal.
 
-```sh
+```
 lean --run lecture_08_hello.lean
 ```
 -/
