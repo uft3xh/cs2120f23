@@ -50,8 +50,14 @@ of type β × α. Call your function prod_comm.
 -/
 
 def prod_comm { α β : Type } : α × β → β × α
-| _ => _
+| (a, β) => (β, a)
 
+-- or
+
+def prod_comm1 { a β : Type } : a × β -> β × a
+| pair => (pair.snd, pair.fst)
+
+#check prod_comm1
 /-!
 Is the transformation from *α × β* to *β × α*
 reversible? That is, given types *α* and *β* (in
@@ -62,6 +68,11 @@ of the appropriate type. Call it prod_com_reverse.
 -/
 
 -- Here:
+def prod_comm_reverse { a β : Type } : β × a -> a × β
+| (β, a) => (a, β)
+
+-- is there a way to define a function α × β → β × α -> a × β ?
+
 
 /-! 
 ## #3: Associativity of Prod
